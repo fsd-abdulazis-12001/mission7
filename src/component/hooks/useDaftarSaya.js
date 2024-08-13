@@ -2,8 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import useFetch from './useFetch';
 import { Notification } from '../UI/Elements/Notification';
-import dotenv from 'dotenv';
-dotenv.config();
+
 const useDaftarSaya = (Endpoint) => {
   const { data: listdaftarsaya, loading, error, setData: setListDaftarSaya } = useFetch(Endpoint);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -20,7 +19,7 @@ const useDaftarSaya = (Endpoint) => {
        
         return;
       }
-      const response = await axios.post(`${process.env.VITE_API_BASE_URL}/${Endpoint}`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/${Endpoint}`, {
         idf,
         image,
         neweps,
@@ -41,7 +40,7 @@ const useDaftarSaya = (Endpoint) => {
   const removeDaftarSaya = async (idf) => {
     try {
       setIsProcessing(true);
-      await axios.delete(`${process.env.VITE_API_BASE_URL}/${Endpoint}/${idf}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/${Endpoint}/${idf}`);
       setListDaftarSaya(listdaftarsaya.filter(item => item.idf !== idf));
       Notification('Berhasil Menghapus dari Daftar Kamu', 'success');
     } catch (err) {
