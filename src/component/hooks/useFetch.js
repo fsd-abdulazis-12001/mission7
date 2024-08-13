@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import dotenv from 'dotenv';
+dotenv.config();
 const useFetch = (endpoint) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,10 +11,10 @@ const useFetch = (endpoint) => {
 
      
 
-    console.log(`${import.meta.env.VITE_API_BASE_URL}/${endpoint}`);
+    console.log(`${process.env.VITE_API_BASE_URL}/${endpoint}`);
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/${endpoint}`);
+        const response = await axios.get(`${process.env.VITE_API_BASE_URL}/${endpoint}`);
         setData(response.data);
       } catch (err) {
         
