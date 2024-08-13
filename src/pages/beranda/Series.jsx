@@ -28,35 +28,35 @@ const Series = React.memo(() => {
       <Header />
       <HeroLayouts bgimage = {{imgsrc : "/img/bg/happiness.png", alt : "Happiness" }} genres = {genres} title = "Happiness" description = 'Mengisahkan tentang kelompok orang yang berjuang untuk bertahan hidup di dalam sebuah gedung apartemen yang penuh dengan zombie. Sayangnya, virus zombie hanya terdapat di dalam area apartemen tersebut dan tidak menyebar ke luar kawasan apartemen.'/>
       <CardsLayouts title="Melanjutkan Tonton Series" height="h-[309px]" amount = {4} isError={errorResumeMovies}>
-          {loadingResumeMovies ? (<LoadingComponent />) : (!errorResumeMovies && resumeSeries.map((movie, index) => (
+          {loadingResumeMovies ? (<LoadingComponent />) : (resumeSeries && resumeSeries.map((movie, index) => (
               <SwiperSlide key={index} className='hover:z-50'>
                   <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya}/>
               </SwiperSlide>
           )))}
       </CardsLayouts>  
      <CardsLayouts title="Series Persembahan Chill" height="h-[512px]" amount = {5} isError={errorseriesPersembahanChill}>
-        {loadingseriesPersembahanChill ? (<LoadingComponent />) : (!errorseriesPersembahanChill && seriesPersembahanChill.map((movie, index) => (
+        {loadingseriesPersembahanChill ? (<LoadingComponent />) : (seriesPersembahanChill && seriesPersembahanChill.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
         )))}
       </CardsLayouts>  
       <CardsLayouts title="Top Rating Series Hari Ini" height="h-[512px]" amount = {5} isError={errortopRatingFilmSeriesHariIni}>
-        {loadingtopRatingFilmSeriesHariIni ? (<LoadingComponent />) : (!errortopRatingFilmSeriesHariIni && topRatingFilmSeriesHariIni.map((movie, index) => (
+        {loadingtopRatingFilmSeriesHariIni ? (<LoadingComponent />) : (topRatingFilmSeriesHariIni && topRatingFilmSeriesHariIni.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
         )))}
       </CardsLayouts>  
       <CardsLayouts title="Series Trending" height="h-[512px]" amount = {5} isError={errorseriesTrending}>
-        {loadingseriesTrending ? (<LoadingComponent />) : (!errorseriesTrending && seriesTrending.map((movie, index) => (
+        {loadingseriesTrending ? (<LoadingComponent />) : (seriesTrending && seriesTrending.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
         )))}
       </CardsLayouts>  
       <CardsLayouts title="Rilis Baru" height="h-[512px]" amount = {5} isError={errorrilisBaruMovies}>
-        {loadingrilisBaruMovies ? (<LoadingComponent />) : (!errorrilisBaruMovies && rilisBaruMovies.map((movie, index) => (
+        {loadingrilisBaruMovies ? (<LoadingComponent />) : (rilisBaruMovies && rilisBaruMovies.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>

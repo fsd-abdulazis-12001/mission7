@@ -45,7 +45,7 @@ const Films = React.memo(() => {
         {loadingSeriesChill ? (
           <LoadingComponent />
         ) : (
-          !errorSeriesChill && seriesPersembahanChill.map((movie, index) => (
+          seriesPersembahanChill && seriesPersembahanChill.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
               <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
@@ -57,7 +57,7 @@ const Films = React.memo(() => {
         {loadingTopRating ? (
           <LoadingComponent />
         ) : (
-          !errorTopRating && topRatingFilmSeriesHarIni.map((movie, index) => (
+          topRatingFilmSeriesHarIni && topRatingFilmSeriesHarIni.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
               <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
@@ -69,7 +69,7 @@ const Films = React.memo(() => {
         {loadingSeriesTrending ? (
           <LoadingComponent />
         ) : (
-          !errorSeriesTrending && seriesTrending.map((movie, index) => (
+          seriesTrending && seriesTrending.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
               <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
@@ -81,7 +81,7 @@ const Films = React.memo(() => {
         {loadingrilisBaruMovies ? (
           <LoadingComponent />
         ) : (
-          !errorrilisBaruMovies && rilisBaruMovies.map((movie, index) => (
+          rilisBaruMovies && rilisBaruMovies.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
               <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
