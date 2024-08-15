@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const DialogModal = ({ openConfirm, onClose,handleAgreConfirm, title,image,modalTitle,top10,neweps } ) => {
+const DeleteAndAddModal = ({ openConfirm, onClose,handleAgreConfirm, title,image,modalTitle,top10,neweps } ) => {
   
   return (
     <>
@@ -41,4 +41,4 @@ const DialogModal = ({ openConfirm, onClose,handleAgreConfirm, title,image,modal
   );
 };
 
-export default DialogModal;
+export default DeleteAndAddModal;

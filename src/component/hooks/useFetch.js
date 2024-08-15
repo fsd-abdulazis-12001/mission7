@@ -33,9 +33,10 @@ const useFetch = (endpoint) => {
         return response.data;
       },
       retry: 1,
+      
     })
     console.log(fectDataQuery);
-  return { data, isLoading : fectDataQuery.isLoading, isError: fectDataQuery.isError };
+  return { data, isLoading : fectDataQuery.isLoading, isError: fectDataQuery.isError, error : fectDataQuery.error };
 };
 
 export default useFetch;

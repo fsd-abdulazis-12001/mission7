@@ -5,10 +5,13 @@ import { useEffect, useState } from 'react';
 import Footer from '../../component/footer';
 import useFetch from '../../component/hooks/useFetch';
 import useDeleteDaftarSaya from '../../component/hooks/useDeleteDaftarSaya';
+import useEditDaftarSaya from '../../component/hooks/useEditDaftarSaya';
 
 const DaftarSaya = () => {
   const [listdaftarsaya, setListDaftarSaya] = useState([]);
+  const [loadingId, setLoadingId] = useState(null);
   const { deleteDaftarSaya } = useDeleteDaftarSaya("daftarsaya");
+  const { editDaftarSaya } = useEditDaftarSaya("daftarsaya");
 
   const { data, isLoading, isError } = useFetch("daftarsaya");
 
@@ -23,6 +26,21 @@ const DaftarSaya = () => {
     setListDaftarSaya((prevList) => prevList.filter((item) => item.idf !== idf));
   };
 
+  const handleEdit = async (idf, imgurl) => {
+    try {
+      setLoadingId(idf);
+      await editDaftarSaya(idf, imgurl);
+      setListDaftarSaya((prevList) =>
+        prevList.map((item) => (item.idf === idf ? { ...item, image: imgurl } : item))
+      );
+      console.log("Edit successful:", idf, imgurl);
+    } catch (error) {
+      console.error("Failed to edit:", error);
+    } finally {
+      setLoadingId(null);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -33,7 +51,13 @@ const DaftarSaya = () => {
           <p>There was an error fetching the list.</p>
         ) : listdaftarsaya && listdaftarsaya.length > 0 ? (
           listdaftarsaya.map((movie, index) => (
-            <CardThumbnail key={index} {...movie} removeDaftarSaya={() => handleDelete(movie.idf)} />
+            <CardThumbnail
+              key={index}
+              {...movie}
+              removeDaftarSaya={() => handleDelete(movie.idf)}
+              editDaftarSaya={handleEdit}
+              loading={loadingId === movie.idf}
+            />
           ))
         ) : (
           <p>Tidak ada film yang ditambahkan</p>

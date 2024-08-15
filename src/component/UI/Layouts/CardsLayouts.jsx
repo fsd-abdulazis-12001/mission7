@@ -5,11 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
-import { FaArrowLeft, FaArrowRight, FaExclamationTriangle } from "react-icons/fa";
-import getErrorMessage from '../../../utils/errorCode';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import LoadingComponent from '../Elements/Loading';
+import CardError from '../Elements/Card/CardError';
 
-const CardsLayouts = ({ title, children, height, amount, isError, isLoading }) => {
+const CardsLayouts = ({ title, children, height, amount, isError, isLoading ,error}) => {
   return (
     <div className={`flex justify-center bg-[#181A1C] text-white ${height} py-11`}>
       <div className='flex flex-col w-11/12'>
@@ -19,13 +19,7 @@ const CardsLayouts = ({ title, children, height, amount, isError, isLoading }) =
             {isLoading ? (
                 <LoadingComponent />
             ) : isError ? (
-              <div className='w-full h-full flex flex-col justify-center items-center text-center p-6 bg-red-500/10 rounded-lg'>
-                <FaExclamationTriangle className='text-6xl text-red-500 mb-4' />
-                <h1 className='text-3xl font-bold text-red-400'>Oops! Something went wrong.</h1>
-                <p className='text-xl mt-2'>{isError.message}</p>
-                <p className='text-sm text-red-300 mt-1'>{getErrorMessage(isError.response?.status)}</p>
-                <p className='text-sm text-green-300 mt-1'>Sengaja Saya Limit, Buat Testing Tampilan</p>
-              </div>
+            <CardError errorObject = {error}/>
             ) : (
               <Swiper
                 breakpoints={{

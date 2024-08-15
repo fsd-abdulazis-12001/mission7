@@ -6,7 +6,7 @@ import formatwaktu from '../../../../utils/formatwaktu';
 import { useNavigate } from 'react-router-dom';
 import SeriesModal from '../SeriesModal';
 import FilmmModal from '../FilmModal';
-import DialogModal from '../DialogModal';
+import DeleteAndAddModal from '../DialogModal/DeleteAndAddModal';
 import { useLocation } from 'react-router-dom';
  
 const MovieCard =  (props) => {
@@ -54,9 +54,9 @@ const MovieCard =  (props) => {
       onMouseLeave={() => handleHover(false)}
     > 
      
-    <DialogModal openConfirm={openConfirm} onClose={handleCloseConfirm} handleAgreConfirm={handleAgreConfirm} title={title} image={image} modalTitle={`Tambahkan ${title} ke Daftar Kamu?`}>
+    <DeleteAndAddModal openConfirm={openConfirm} onClose={handleCloseConfirm} handleAgreConfirm={handleAgreConfirm} title={title} image={image} modalTitle={`Tambahkan ${title} ke Daftar Kamu?`}>
      
-    </DialogModal>
+    </DeleteAndAddModal>
  
 
       {(pathSegment === "films" || pathSegment === "") && 
