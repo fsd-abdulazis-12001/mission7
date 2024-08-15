@@ -8,59 +8,59 @@ import HeroLayouts from '../../component/UI/Layouts/HeroLayouts';
 
 
 import useFetch from '../../component/hooks/useFetch';
-import useDaftarSaya from "../../component/hooks/useDaftarSaya"
 
 import genres from '../../component/constants/genres';
-import LoadingComponent from '../../component/UI/Elements/Loading';
+
 import React from 'react';
+import useAddDaftarSaya from '../../component/hooks/useAddDaftarSaya';
 
 const Series = React.memo(() => {
  
-  const { data: resumeSeries, loading: loadingResumeMovies, error: errorResumeMovies } = useFetch('resumeMovies');
-  const { data: seriesPersembahanChill, loading: loadingseriesPersembahanChill, error: errorseriesPersembahanChill } = useFetch('seriesPersembahanChill');
-  const { data: topRatingFilmSeriesHariIni, loading: loadingtopRatingFilmSeriesHariIni, error: errortopRatingFilmSeriesHariIni} = useFetch('topRatingFilmSeriesHariIni');
-  const { data: seriesTrending, loading: loadingseriesTrending, error: errorseriesTrending} = useFetch('seriesTrending');
-  const { data: rilisBaruMovies, loading: loadingrilisBaruMovies, error: errorrilisBaruMovies} = useFetch('rilisBaruMovies');
-  const {addDaftarSaya}  = useDaftarSaya("daftarsaya")
+  const { data: resumeSeries, isLoading: loadingResumeMovies, isError: errorResumeMovies } = useFetch('resumeMovies');
+  const { data: seriesPersembahanChill, isLoading: loadingseriesPersembahanChill, isError: errorseriesPersembahanChill } = useFetch('seriesPersembahanChill');
+  const { data: topRatingFilmSeriesHariIni, isLoading: loadingtopRatingFilmSeriesHariIni, isError: errortopRatingFilmSeriesHariIni} = useFetch('topRatingFilmSeriesHariIni');
+  const { data: seriesTrending, isLoading: loadingseriesTrending, isError: errorseriesTrending} = useFetch('seriesTrending');
+  const { data: rilisBaruMovies, isLoading: loadingrilisBaruMovies, isError: errorrilisBaruMovies} = useFetch('rilisBaruMovies');
+  const {addDaftarSaya}  = useAddDaftarSaya("daftarsaya")
   
   return (
     <>
       <Header />
       <HeroLayouts bgimage = {{imgsrc : "/img/bg/happiness.png", alt : "Happiness" }} genres = {genres} title = "Happiness" description = 'Mengisahkan tentang kelompok orang yang berjuang untuk bertahan hidup di dalam sebuah gedung apartemen yang penuh dengan zombie. Sayangnya, virus zombie hanya terdapat di dalam area apartemen tersebut dan tidak menyebar ke luar kawasan apartemen.'/>
-      <CardsLayouts title="Melanjutkan Tonton Series" height="h-[309px]" amount = {4} isError={errorResumeMovies}>
-          {loadingResumeMovies ? (<LoadingComponent />) : (resumeSeries && resumeSeries.map((movie, index) => (
+      <CardsLayouts title="Melanjutkan Tonton Series" height="h-[309px]" amount = {4} isError={errorResumeMovies} isLoading={loadingResumeMovies} >
+          {resumeSeries && resumeSeries.map((movie, index) => (
               <SwiperSlide key={index} className='hover:z-50'>
                   <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya}/>
               </SwiperSlide>
-          )))}
+          ))}
       </CardsLayouts>  
-     <CardsLayouts title="Series Persembahan Chill" height="h-[512px]" amount = {5} isError={errorseriesPersembahanChill}>
-        {loadingseriesPersembahanChill ? (<LoadingComponent />) : (seriesPersembahanChill && seriesPersembahanChill.map((movie, index) => (
+     <CardsLayouts title="Series Persembahan Chill" height="h-[512px]" amount = {5} isError={errorseriesPersembahanChill} isLoading={loadingseriesPersembahanChill}>
+        {seriesPersembahanChill && seriesPersembahanChill.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
-        )))}
+        ))}
       </CardsLayouts>  
-      <CardsLayouts title="Top Rating Series Hari Ini" height="h-[512px]" amount = {5} isError={errortopRatingFilmSeriesHariIni}>
-        {loadingtopRatingFilmSeriesHariIni ? (<LoadingComponent />) : (topRatingFilmSeriesHariIni && topRatingFilmSeriesHariIni.map((movie, index) => (
+      <CardsLayouts title="Top Rating Series Hari Ini" height="h-[512px]" amount = {5} isError={errortopRatingFilmSeriesHariIni} isLoading={loadingtopRatingFilmSeriesHariIni}>
+        {topRatingFilmSeriesHariIni && topRatingFilmSeriesHariIni.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
-        )))}
+        ))}
       </CardsLayouts>  
-      <CardsLayouts title="Series Trending" height="h-[512px]" amount = {5} isError={errorseriesTrending}>
-        {loadingseriesTrending ? (<LoadingComponent />) : (seriesTrending && seriesTrending.map((movie, index) => (
+      <CardsLayouts title="Series Trending" height="h-[512px]" amount = {5} isError={errorseriesTrending} isLoading={loadingseriesTrending}>
+        {seriesTrending && seriesTrending.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
-        )))}
+        ))}
       </CardsLayouts>  
-      <CardsLayouts title="Rilis Baru" height="h-[512px]" amount = {5} isError={errorrilisBaruMovies}>
-        {loadingrilisBaruMovies ? (<LoadingComponent />) : (rilisBaruMovies && rilisBaruMovies.map((movie, index) => (
+      <CardsLayouts title="Rilis Baru" height="h-[512px]" amount = {5} isError={errorrilisBaruMovies} isLoading={loadingrilisBaruMovies}>
+        {rilisBaruMovies && rilisBaruMovies.map((movie, index) => (
             <SwiperSlide key={index} className='hover:z-50 '>
                 <MovieCard key={index} index={index} {...movie} addDaftarSaya={addDaftarSaya} />
             </SwiperSlide>
-        )))}
+        ))}
       </CardsLayouts>  
 
       <Footer />

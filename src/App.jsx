@@ -14,6 +14,12 @@ import Profile from "./pages/auth/Profile";
 import Langganan from "./pages/langganan";
 import Payment from "./pages/payment";
 import VideoPlayer from "./pages/videoplayer";
+
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,12 +69,18 @@ const router = createBrowserRouter([
   }
 ]);
 function App() {
-
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false
+      }
+    }
+  })
   return (
-    
+    <QueryClientProvider client={queryClient}>
       
       <RouterProvider router={router} />
-    
+    </QueryClientProvider>
   )
 }
 

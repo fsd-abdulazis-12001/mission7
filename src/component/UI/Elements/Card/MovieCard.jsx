@@ -42,7 +42,6 @@ const MovieCard =  (props) => {
     handleHover(false)
   };
   const handleAgreConfirm = async () => {
-    
     addDaftarSaya(idf , image,top10,neweps,title)
     handleCloseConfirm()
   };

@@ -10,6 +10,7 @@ import filmTrendingMovies from '../constants/filmTrendingMovies';
 import resumeSeries from '../constants/resumeSeries';
 import topRatingFilmAndMovies from '../constants/topRatingFilmAndMovies';
 
+//backup data misal API offline, tapi gak jadi saya pake
 
 const fallbackDataMap = {
     resumeMovies,

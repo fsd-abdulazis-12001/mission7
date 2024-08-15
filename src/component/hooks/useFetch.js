@@ -1,32 +1,41 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import { useState } from 'react';
+import {axiosInstance} from '../../lib/axios';
+import { useQuery } from '@tanstack/react-query';
 
 const useFetch = (endpoint) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+   const [data, setData] = useState(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
   
-  useEffect(() => {
-
-     
-
-    console.log(`${import.meta.env.VITE_API_BASE_URL}/${endpoint}`);
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/${endpoint}`);
-        setData(response.data);
-      } catch (err) {
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await axiosInstance.get(`/${endpoint}`);
+    //     setData(response.data);
+    //   } catch (err) {
         
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    //     setError(err);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
-    fetchData();
-  }, [endpoint]);
 
-  return { data, loading, error,setData  };
+    //saya pake lib useQuery aja
+
+   
+    const fectDataQuery =  useQuery({
+      queryKey: [endpoint],
+      queryFn: async () => {
+        const response = await axiosInstance.get(`/${endpoint}`);
+
+        setData(response.data);
+        return response.data;
+      },
+      retry: 1,
+    })
+    console.log(fectDataQuery);
+  return { data, isLoading : fectDataQuery.isLoading, isError: fectDataQuery.isError };
 };
 
 export default useFetch;

@@ -5,8 +5,6 @@ import { Button } from '@mui/material'
 import React , { useState } from 'react'
  
 import DialogModal from '../DialogModal'
-import useDaftarSayaStore from '../../../stores/daftarsaya/useDaftarSayaStore';
-
 const CardThumbnail = ({idf, image, top10, neweps, title,ignore,removeDaftarSaya}) => {
   
   const [openConfirm, setOpenConfirm] = useState(false);
