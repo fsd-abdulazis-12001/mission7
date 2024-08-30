@@ -6,7 +6,7 @@ const useEditDaftarSaya = (endpoint) => {
   
     const mutation = useMutation({
         mutationFn: async ( {idf, imgurl} ) => {
-            console.log("Sending to API:", { idf,imgurl}); // Log the payload
+            console.log("Sending to API:", { idf,imgurl});
             const response = await axiosInstance.patch(`/${endpoint}/${idf}`, {"image":imgurl});
             return response.data;
         },
